@@ -1,0 +1,85 @@
+classDiagram
+    class User {
+        +int id
+        +string email
+        +json roles
+        +string password
+        +datetime createdAt
+    }
+    class Candidate {
+        +string firstName
+        +string lastName
+        +string title
+        +string bio
+    }
+    class Recruiter {
+        +string firstName
+        +string lastName
+        +string position
+    }
+    class Company {
+        +int id
+        +string name
+        +string description
+        +string website
+        +string city
+    }
+    class Category {
+        +int id
+        +string name
+        +string slug
+    }
+    class JobOffer {
+        +int id
+        +string title
+        +text description
+        +string contractType
+        +int salary
+        +string location
+        +string status
+        +datetime createdAt
+    }
+    class Skill {
+        +int id
+        +string name
+    }
+    class Application {
+        +int id
+        +text coverLetter
+        +string status
+        +datetime createdAt
+    }
+    class Resume {
+        +int id
+        +string filename
+        +datetime createdAt
+    }
+    class Message {
+        +int id
+        +text content
+        +datetime createdAt
+    }
+    class Notification {
+        +int id
+        +string content
+        +bool isRead
+        +datetime createdAt
+    }
+
+    User <|-- Candidate : STI
+    User <|-- Recruiter : STI
+
+    Recruiter "1" --> "1" Company : travaille pour
+    JobOffer "*" --> "1" Recruiter : publiee par
+    JobOffer "*" --> "1" Company : chez
+    JobOffer "*" --> "1" Category : dans
+    Application "*" --> "1" JobOffer : concerne
+    Application "*" --> "1" Candidate : envoyee par
+    Application "*" --> "1" Resume : avec
+    Resume "*" --> "1" Candidate : appartient a
+    Message "*" --> "1" User : envoye par
+    Message "*" --> "1" User : recu par
+    Notification "*" --> "1" User : destinee a
+
+    JobOffer "*" -- "*" Skill : requiert
+    Candidate "*" -- "*" Skill : maitrise

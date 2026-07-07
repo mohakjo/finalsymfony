@@ -7,6 +7,10 @@
     <h1>{{ offer.title }}</h1>
     <p class="muted">{{ offer.company.name }} · {{ offer.location }}</p>
 
+    {% if is_granted('JOB_OFFER_EDIT', offer) %}
+        <p><a class="btn" href="{{ path('app_offer_edit', {id: offer.id}) }}">Modifier cette offre</a></p>
+    {% endif %}
+
     <p>
         <span class="tag">{{ offer.contractType }}</span>
         {% if offer.category %}<span class="tag">{{ offer.category.name }}</span>{% endif %}

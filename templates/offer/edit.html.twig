@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier — {{ offer.title }}{% endblock %}
+
+{% block body %}
+    <p><a href="{{ path('app_offer_show', {id: offer.id}) }}">← Retour à l'offre</a></p>
+    <h1>Modifier l'offre</h1>
+    {{ form(form) }}
+{% endblock %}
