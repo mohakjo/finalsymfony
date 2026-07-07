@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Offres d'emploi — Job Board{% endblock %}
+
+{% block body %}
+    <h1>Offres d'emploi</h1>
+    <p class="muted">{{ offers|length }} offre(s) disponible(s)</p>
+
+    <div class="grid">
+        {% for offer in offers %}
+            <div class="card">
+                <h3><a href="{{ path('app_offer_show', {id: offer.id}) }}">{{ offer.title }}</a></h3>
+                <p class="muted">{{ offer.company.name }} · {{ offer.location }}</p>
+                <span class="tag">{{ offer.contractType }}</span>
+                {% if offer.category %}<span class="tag">{{ offer.category.name }}</span>{% endif %}
+            </div>
+        {% else %}
+            <p>Aucune offre pour le moment.</p>
+        {% endfor %}
+    </div>
+{% endblock %}

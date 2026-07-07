@@ -53,6 +53,12 @@ class Resume
         return $this->createdAt;
     }
 
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    {
+        $this->createdAt = $createdAt;
+        return $this;
+    }
+
     public function getCandidate(): ?Candidate
     {
         return $this->candidate;

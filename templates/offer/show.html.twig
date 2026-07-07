@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ offer.title }} — Job Board{% endblock %}
+
+{% block body %}
+    <p><a href="{{ path('app_home') }}">← Retour aux offres</a></p>
+    <h1>{{ offer.title }}</h1>
+    <p class="muted">{{ offer.company.name }} · {{ offer.location }}</p>
+
+    <p>
+        <span class="tag">{{ offer.contractType }}</span>
+        {% if offer.category %}<span class="tag">{{ offer.category.name }}</span>{% endif %}
+        {% if offer.salary %}<span class="tag">{{ offer.salary }} € / an</span>{% endif %}
+    </p>
+
+    {% if offer.skills|length > 0 %}
+        <p><strong>Compétences :</strong>
+            {% for skill in offer.skills %}<span class="tag">{{ skill.name }}</span>{% endfor %}
+        </p>
+    {% endif %}
+
+    <h3>Description</h3>
+    <p style="white-space:pre-line;">{{ offer.description }}</p>
+
+    <p class="muted">Publiée par {{ offer.recruiter.firstName }} {{ offer.recruiter.lastName }}
+        le {{ offer.createdAt|date('d/m/Y') }}</p>
+{% endblock %}

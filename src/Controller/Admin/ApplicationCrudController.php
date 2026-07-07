@@ -1,0 +1,14 @@
+<?php
+
+namespace App\Controller\Admin;
+
+use App\Entity\Application;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+
+class ApplicationCrudController extends AbstractCrudController
+{
+    public static function getEntityFqcn(): string
+    {
+        return Application::class;
+    }
+}

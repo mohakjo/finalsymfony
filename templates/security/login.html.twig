@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion — Job Board{% endblock %}
+
+{% block body %}
+    <form class="login" method="post">
+        <h1 style="margin-top:0;">Connexion</h1>
+
+        {% if error %}
+            <div class="alert">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        <label for="username">Email</label>
+        <input type="email" id="username" name="_username" value="{{ last_username }}" required autofocus>
+
+        <label for="password">Mot de passe</label>
+        <input type="password" id="password" name="_password" required>
+
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+        <button class="btn" type="submit">Se connecter</button>
+
+        <div class="hint">
+            Comptes de test (mot de passe : <strong>password</strong>)<br>
+            admin@jobboard.test · recruteur@jobboard.test · candidat@jobboard.test
+        </div>
+    </form>
+{% endblock %}
